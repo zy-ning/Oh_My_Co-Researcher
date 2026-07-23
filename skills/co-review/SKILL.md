@@ -1,17 +1,17 @@
 ---
-name: review
+name: co-review
 description: >-
   Adversarial critique of a research draft or paper using an isolated critic
   context. The critic must have no access to the current conversation history —
   context isolation, not model identity, is what makes the review independent.
   Use when a draft is complete or partially complete, after each writing round,
-  or when `write` invokes it automatically. Returns FATAL/MAJOR/MINOR issues, a
+  or when `co-write` invokes it automatically. Returns FATAL/MAJOR/MINOR issues, a
   structured score (0–10), and a PROCEED/REFINE/PIVOT recommendation. Caps at 4
   rounds. Trigger phrases: "review paper", "critique draft", "check
   citations", "adversarial review".
 ---
 
-# Review
+# Co-Review
 
 Run an adversarial review in an **isolated context**. The critic must have no access to the current conversation history — this is what makes the critique independent, not which model is used.
 

@@ -21,7 +21,7 @@ Observed output included:
 
 Verified created paths:
 
-- `.claude/skills/research/SKILL.md`
+- `.claude/skills/co-research/SKILL.md`
 - `templates/RESEARCH.md.template`
 - `templates/skills.yaml.template`
 - `skillpacks/skill_dictionary.yaml`
@@ -63,7 +63,7 @@ Observed output included:
 
 Verified created paths:
 
-- `~/.claude/skills/research/SKILL.md`
+- `~/.claude/skills/co-research/SKILL.md`
 - `~/.claude/co-researcher/templates/RESEARCH.md.template`
 - `~/.claude/co-researcher/templates/skills.yaml.template`
 - `~/.claude/co-researcher/skillpacks/skill_dictionary.yaml`
@@ -71,6 +71,6 @@ Verified created paths:
 
 ## Integration checks covered by repo content
 
-- `customize` points to `templates/skills.yaml.template` as the starting shape for `.co-researcher/skills.yaml`.
-- `research` documents precedence: `RESEARCH.md` supervision policy overrides `.co-researcher/skills.yaml`, and presets are starting recommendations only.
+- `co-customize` points to `templates/skills.yaml.template` as the starting shape for `.co-researcher/skills.yaml`.
+- `co-research` documents precedence: `RESEARCH.md` supervision policy overrides `.co-researcher/skills.yaml`, and presets are starting recommendations only.
 - `docs/agent-setup.md` now distinguishes project-local and global registry locations.

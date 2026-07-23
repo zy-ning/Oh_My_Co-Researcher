@@ -1,5 +1,5 @@
 ---
-name: customize
+name: co-customize
 description: >-
   Configure the project's skill stack and supervision preferences. Reads the
   curated registry in `skillpacks/skill_dictionary.yaml`, asks a short preset-first set of
@@ -10,7 +10,7 @@ description: >-
   project".
 ---
 
-# Customize
+# Co-Customize
 
 Use this skill when the user wants to choose a preferred stack for the current project instead of manually copying many external skills.
 
@@ -18,7 +18,7 @@ Use this skill when the user wants to choose a preferred stack for the current p
 
 ## Goals
 
-`customize` should:
+`co-customize` should:
 
 1. Read the curated registry in `skillpacks/skill_dictionary.yaml`.
 2. Recommend packs and subsets by **capability**, not just by repo name.
@@ -212,6 +212,6 @@ After writing the file:
 ## Constraints
 
 - Do not install external skills silently.
-- Do not mutate `skillpacks/skill_dictionary.yaml`; that belongs to `evolve`.
+- Do not mutate `skillpacks/skill_dictionary.yaml`; that belongs to `co-evolve`.
 - Do not recommend full-pack imports unless the user clearly asks for them.
 - Prefer simple, project-local configuration over hidden session-only state.

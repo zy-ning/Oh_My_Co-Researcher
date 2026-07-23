@@ -2,7 +2,7 @@
 
 Oh My Co-Researcher uses a **lean core + curated registry** model.
 
-- The built-in core (`research`, `experiment`, `review`, `write`, `supervision`, `customize`, `evolve`) is always the base.
+- The built-in core (`co-research`, `co-experiment`, `co-review`, `co-write`, `co-supervision`, `co-customize`, `co-evolve`) is always the base.
 - External packs are tracked in `skillpacks/skill_dictionary.yaml` as curated donors or overlays.
 - Project-specific choices live in `.co-researcher/skills.yaml`.
 
@@ -50,7 +50,7 @@ to:
 
 ## How to configure
 
-Use `customize` when you want the repo to recommend a stack instead of manually stitching many skills together.
+Use `co-customize` when you want the repo to recommend a stack instead of manually stitching many skills together.
 
 The flow is preset-first:
 
@@ -65,7 +65,7 @@ The flow is preset-first:
 There are two policy layers:
 
 1. `RESEARCH.md` `## Supervision Policy` — active runtime policy
-2. `.co-researcher/skills.yaml` `supervision` — project-local defaults written by `customize`
+2. `.co-researcher/skills.yaml` `supervision` — project-local defaults written by `co-customize`
 
 When both exist, `RESEARCH.md` wins. The project-local config is the default preference layer; `RESEARCH.md` is the live working-state layer.
 
@@ -121,9 +121,9 @@ supervision:
 
 ## Roles
 
-### `evolve`
+### `co-evolve`
 
-`evolve` owns the shared registry.
+`co-evolve` owns the shared registry.
 
 It should:
 
@@ -132,9 +132,9 @@ It should:
 - refresh existing entries
 - maintain recommended subsets and presets
 
-### `customize`
+### `co-customize`
 
-`customize` owns project personalization.
+`co-customize` owns project personalization.
 
 It should:
 

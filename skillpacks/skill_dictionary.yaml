@@ -24,47 +24,47 @@ packs:
       rationale:
         - Encodes the repo's primary workflow and supervision model.
         - Provides the minimum viable stack even without external skill packs.
-    recommended_subset: [research, experiment, review, write, supervision, customize, evolve]
+    recommended_subset: [co-research, co-experiment, co-review, co-write, co-supervision, co-customize, co-evolve]
     overlap_with_core: []
     skills:
-      - id: core/research
-        name: research
+      - id: core/co-research
+        name: co-research
         category: literature
         summary: Main orchestrator that reads RESEARCH.md, proposes next steps, and delegates.
         necessity: default
         compatibility: native
-      - id: core/experiment
-        name: experiment
+      - id: core/co-experiment
+        name: co-experiment
         category: execution
         summary: Bounded experiment runner with optional BFS mode.
         necessity: default
         compatibility: native
-      - id: core/review
-        name: review
+      - id: core/co-review
+        name: co-review
         category: review
         summary: Adversarial reviewer with isolated-critic fallback chain.
         necessity: default
         compatibility: native
-      - id: core/write
-        name: write
+      - id: core/co-write
+        name: co-write
         category: writing
         summary: Grounded paper drafting and revision support.
         necessity: default
         compatibility: native
-      - id: core/evolve
-        name: evolve
+      - id: core/co-evolve
+        name: co-evolve
         category: maintenance
         summary: Curates lessons and personalizes the skill ecosystem.
         necessity: default
         compatibility: native
-      - id: core/supervision
-        name: supervision
+      - id: core/co-supervision
+        name: co-supervision
         category: supervision
         summary: Configures RESEARCH.md supervision policy through a preset-first flow.
         necessity: default
         compatibility: native
-      - id: core/customize
-        name: customize
+      - id: core/co-customize
+        name: co-customize
         category: customization
         summary: Recommends presets and writes project-local skill stack preferences.
         necessity: default
@@ -93,7 +93,7 @@ packs:
         - Fills literature survey, idea refinement, planning, and claim-checking gaps well.
         - Strong match for co-researcher's lean-core-plus-donor model.
     recommended_subset: [research-lit, research-refine, experiment-plan, result-to-claim]
-    overlap_with_core: [review, write, experiment]
+    overlap_with_core: [co-review, co-write, co-experiment]
     skills:
       - id: aris/research-lit
         name: research-lit
@@ -101,7 +101,7 @@ packs:
         summary: Literature survey and related-work search.
         necessity: high
         compatibility: high
-        overlap: [core/research]
+        overlap: [core/co-research]
         substitutes: [feynman/alpha-research, academic-research-skills/deep-research]
       - id: aris/research-refine
         name: research-refine
@@ -157,7 +157,7 @@ packs:
         - Adds distinctive cited research and reproducibility workflows.
         - Dependency burden is higher if AlphaXiv tooling is not already configured.
     recommended_subset: [alpha-research, audit]
-    overlap_with_core: [research, review]
+    overlap_with_core: [co-research, co-review]
     skills:
       - id: feynman/alpha-research
         name: alpha-research
@@ -202,7 +202,7 @@ packs:
         - Valuable for experiment-heavy users with compute infrastructure.
         - Too heavyweight to recommend as a default donor pack.
     recommended_subset: ["project:planning", "project:experiment", "project:analysis"]
-    overlap_with_core: [research, experiment, review, write]
+    overlap_with_core: [co-research, co-experiment, co-review, co-write]
     skills:
       - id: nanoresearch/project-planning
         name: /project:planning
@@ -248,7 +248,7 @@ packs:
         - High overlap with local orchestrator concepts and strong autonomy assumptions.
         - Best for users explicitly seeking a maximal autonomous research lab.
     recommended_subset: [HITL concepts, claim verification patterns]
-    overlap_with_core: [research, experiment, review, write, evolve]
+    overlap_with_core: [co-research, co-experiment, co-review, co-write, co-evolve]
     skills:
       - id: autoresearchclaw/hitl
         name: HITL co-pilot patterns
@@ -293,7 +293,7 @@ packs:
         - Useful when a user needs specific ML or infrastructure workflows not covered elsewhere.
         - Better for targeted imports than broad activation.
     recommended_subset: [task-specific only]
-    overlap_with_core: [experiment, review, write]
+    overlap_with_core: [co-experiment, co-review, co-write]
     skills:
       - id: ai-research-skills/autoresearch
         name: autoresearch
@@ -337,7 +337,7 @@ packs:
         - Good specialist add-on for academic paper quality and integrity checks.
         - Smaller and easier to reason about than larger autonomous pipeline packs.
     recommended_subset: [deep-research, academic-paper-reviewer]
-    overlap_with_core: [research, review, write]
+    overlap_with_core: [co-research, co-review, co-write]
     skills:
       - id: academic-research-skills/deep-research
         name: deep-research
@@ -352,21 +352,21 @@ packs:
         summary: Academic drafting and format-focused writing workflow.
         necessity: optional
         compatibility: medium
-        overlap: [core/write]
+        overlap: [core/co-write]
       - id: academic-research-skills/academic-paper-reviewer
         name: academic-paper-reviewer
         category: review
         summary: Multi-perspective peer review with explicit rubrics and integrity discipline.
         necessity: high
         compatibility: high
-        substitutes: [core/review]
+        substitutes: [core/co-review]
       - id: academic-research-skills/academic-pipeline
         name: academic-pipeline
         category: writing
         summary: Full academic pipeline orchestrator.
         necessity: optional
         compatibility: low
-        overlap: [core/research, core/review, core/write]
+        overlap: [core/co-research, core/co-review, core/co-write]
 
   - id: read-arxiv-paper
     name: read-arxiv-paper
@@ -392,7 +392,7 @@ packs:
         - Adds a focused arXiv paper reading workflow to literature-heavy stacks.
         - Complements broader literature search skills with direct paper digestion.
     recommended_subset: [read-arxiv-paper]
-    overlap_with_core: [research]
+    overlap_with_core: [co-research]
     skills:
       - id: read-arxiv-paper/read-arxiv-paper
         name: read-arxiv-paper
@@ -427,7 +427,7 @@ packs:
         - Adds structured scholarly database access for research-heavy literature work.
         - Complements citation and related-work discovery workflows.
     recommended_subset: [openalex-database]
-    overlap_with_core: [research]
+    overlap_with_core: [co-research]
     skills:
       - id: openalex-database/openalex-database
         name: openalex-database
@@ -460,7 +460,7 @@ packs:
         - Adds scientific database lookup, statistical analysis, EDA, and evidence-quality helpers not covered by the core.
         - Too broad and dependency-heavy to recommend as a default pack.
     recommended_subset: [paper-lookup, literature-review, scientific-critical-thinking, citation-management, scholar-evaluation, venue-templates, statistical-analysis, exploratory-data-analysis, database-lookup]
-    overlap_with_core: [research, review, write, experiment]
+    overlap_with_core: [co-research, co-review, co-write, co-experiment]
     skills:
       - id: scientific-agent-skills/paper-lookup
         name: paper-lookup
@@ -468,7 +468,7 @@ packs:
         summary: Multi-database paper lookup across PubMed, PMC, bioRxiv, medRxiv, arXiv, OpenAlex, Crossref, Semantic Scholar, CORE, and Unpaywall.
         necessity: medium
         compatibility: medium
-        overlap: [core/research]
+        overlap: [core/co-research]
         substitutes: [aris/research-lit, read-arxiv-paper/read-arxiv-paper, openalex-database/openalex-database]
       - id: scientific-agent-skills/literature-review
         name: literature-review
@@ -476,7 +476,7 @@ packs:
         summary: Systematic scientific literature review workflow with stronger methodology discipline.
         necessity: medium
         compatibility: medium
-        overlap: [core/research]
+        overlap: [core/co-research]
         substitutes: [aris/research-lit]
       - id: scientific-agent-skills/scientific-critical-thinking
         name: scientific-critical-thinking
@@ -484,7 +484,7 @@ packs:
         summary: Evidence-quality and reasoning critique for scientific claims.
         necessity: medium
         compatibility: high
-        overlap: [core/review]
+        overlap: [core/co-review]
       - id: scientific-agent-skills/citation-management
         name: citation-management
         category: academic-integrity
@@ -553,7 +553,7 @@ packs:
         - Adds practical debugging, investigation, code explanation, and presentation workflows missing from the research core.
         - Young repo, so use targeted imports after review rather than broad activation.
     recommended_subset: [investigate, debug, code-explainer, guided-learning, slide-deck]
-    overlap_with_core: [experiment, research, write]
+    overlap_with_core: [co-experiment, co-research, co-write]
     skills:
       - id: claude-tricks/investigate
         name: investigate
@@ -585,7 +585,7 @@ packs:
         summary: Interactive HTML slide deck generation with charts and animations.
         necessity: optional
         compatibility: medium
-        overlap: [core/write]
+        overlap: [core/co-write]
       - id: claude-tricks/alphaxiv-paper-lookup
         name: alphaxiv-paper-lookup
         category: literature
@@ -600,7 +600,7 @@ packs:
         summary: Autonomous experiment loop inspired by autoresearch.
         necessity: optional
         compatibility: low
-        overlap: [core/experiment]
+        overlap: [core/co-experiment]
       - id: claude-tricks/frontend-design
         name: frontend-design
         category: frontend
@@ -619,7 +619,7 @@ capabilities:
   literature:
     summary: Paper search, related work, synthesis, and cited research retrieval.
     providers:
-      - skill: core/research
+      - skill: core/co-research
         strength: medium
       - skill: aris/research-lit
         strength: strong
@@ -661,7 +661,7 @@ capabilities:
   execution:
     summary: Running experiments, autoresearch loops, and compute-backed iteration.
     providers:
-      - skill: core/experiment
+      - skill: core/co-experiment
         strength: strong
       - skill: nanoresearch/project-experiment
         strength: very_strong
@@ -675,7 +675,7 @@ capabilities:
   review:
     summary: Adversarial critique, claim checking, reproducibility audits, and result interpretation.
     providers:
-      - skill: core/review
+      - skill: core/co-review
         strength: strong
       - skill: aris/result-to-claim
         strength: strong
@@ -697,7 +697,7 @@ capabilities:
   writing:
     summary: Grounded drafting, academic formatting, and paper-production support.
     providers:
-      - skill: core/write
+      - skill: core/co-write
         strength: strong
       - skill: aris/paper-figure
         strength: medium

@@ -74,12 +74,12 @@ fi
 echo ""
 if $GLOBAL; then
   echo "Next steps:"
-  echo "  In your research project, run /research — it will auto-initialize RESEARCH.md."
+  echo "  In your research project, run /co-research — it will auto-initialize RESEARCH.md."
   echo "  Or manually: cp ~/.claude/co-researcher/templates/RESEARCH.md.template ./RESEARCH.md"
   echo "  Optional stack config: cp ~/.claude/co-researcher/templates/skills.yaml.template ./.co-researcher/skills.yaml"
 else
   echo "Next steps:"
   echo "  cp templates/RESEARCH.md.template RESEARCH.md"
   echo "  Optional stack config: mkdir -p .co-researcher && cp templates/skills.yaml.template .co-researcher/skills.yaml"
-  echo "  Then run /research to start."
+  echo "  Then run /co-research to start."
 fi

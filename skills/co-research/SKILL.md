@@ -1,5 +1,5 @@
 ---
-name: research
+name: co-research
 description: >-
   Autonomous research agent that reads RESEARCH.md, infers what's needed,
   dynamically adjusts TODOs, and delegates to the right skill. Supports opt-in
@@ -11,7 +11,7 @@ description: >-
   space", "autoresearch".
 ---
 
-# Research
+# Co-Research
 
 Own `RESEARCH.md`. Use it as the ground truth for project state.
 
@@ -36,9 +36,9 @@ Own `RESEARCH.md`. Use it as the ground truth for project state.
 5. Precedence rule:
    - `RESEARCH.md` `## Supervision Policy` overrides everything when present.
    - `.co-researcher/skills.yaml` provides project-local defaults when RESEARCH.md does not define supervision policy yet.
-   - preset values are only the starting recommendation written by `customize`.
+   - preset values are only the starting recommendation written by `co-customize`.
 6. If `.co-researcher/skills.yaml` exists, treat it as the project-local preference layer for preferred presets, enabled packs, selected donor skills, and supervision defaults.
-7. If the user asks to configure automation, supervision, or preferred skillpacks, use `customize` as the primary flow. Use direct inline RESEARCH.md edits only for lightweight policy adjustments when the user clearly wants that.
+7. If the user asks to configure automation, supervision, or preferred skillpacks, use `co-customize` as the primary flow. Use direct inline RESEARCH.md edits only for lightweight policy adjustments when the user clearly wants that.
 8. Policy dimensions:
    - **Notify** — events to surface; if no channel exists, surface in the next user-visible update
    - **Approve** — action types requiring a pause; precedence: approval > notify-only > silent
@@ -73,12 +73,12 @@ Own `RESEARCH.md`. Use it as the ground truth for project state.
    | Paper-to-code reproducibility audit | `audit` |
    | Method / idea refinement | `research-refine` |
    | Experiment planning | `experiment-plan` |
-   | Running experiments | `experiment` (this pack) or `run-experiment` |
+   | Running experiments | `co-experiment` (this pack) or `run-experiment` |
    | Result analysis | `result-to-claim` |
    | Figures | `paper-figure` |
-   | Paper drafting | `write` (this pack) or `paper-write` |
-   | Review / critique | `review` (this pack) or `auto-review-loop` |
-   | Lesson extraction | `evolve` (this pack) |
+   | Paper drafting | `co-write` (this pack) or `paper-write` |
+   | Review / critique | `co-review` (this pack) or `auto-review-loop` |
+   | Lesson extraction | `co-evolve` (this pack) |
    | Unclear | Ask the user, or do it directly. |
 
 14. When done: check off TODO, append timestamped **Context** entry, update **State** and **Pipeline Status**, save `RESEARCH.md`.
@@ -98,7 +98,7 @@ Own `RESEARCH.md`. Use it as the ground truth for project state.
 
 When the user asks to "explore the design space", "autoresearch", or "find the best config", apply the supervision policy for `bfs-start` (approve → confirm; notify → announce and continue; absent → confirm). In `wild` mode, BFS may proceed without a checkpoint only when target file, metric, budget, and completion criteria are already explicit and within granted resource boundaries.
 
-Before starting, confirm: target file, metric + direction (e.g., minimize `val_bpb`), time budget per run, max experiments. Then delegate to `experiment` BFS mode — do not interrupt. When done, update RESEARCH.md Context and Pipeline Status and propose next step.
+Before starting, confirm: target file, metric + direction (e.g., minimize `val_bpb`), time budget per run, max experiments. Then delegate to `co-experiment` BFS mode — do not interrupt. When done, update RESEARCH.md Context and Pipeline Status and propose next step.
 
 **DFS — default when direction is confirmed**
 
@@ -108,7 +108,7 @@ Commit each meaningful step. `git stash` before risky moves; note the stash in *
 
 16. `.co-researcher/skills.yaml` is optional. If absent, keep existing behavior.
 17. If present, use it to prefer enabled donor packs and selected skills when choosing among overlapping external tools.
-18. Do not silently rewrite `.co-researcher/skills.yaml` during normal orchestration. Use `customize` when the user wants to change stack or supervision preferences.
+18. Do not silently rewrite `.co-researcher/skills.yaml` during normal orchestration. Use `co-customize` when the user wants to change stack or supervision preferences.
 
 ## Tone
 

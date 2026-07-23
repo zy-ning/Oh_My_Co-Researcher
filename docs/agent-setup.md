@@ -12,7 +12,7 @@ curl -fsSL https://raw.githubusercontent.com/zy-ning/Oh_My_Co-Researcher/main/in
 
 This installs skills to `~/.claude/skills/`, templates to `~/.claude/co-researcher/templates/`, and `CLAUDE.md` to `~/.claude/co-researcher/`.
 
-Verify: `ls ~/.claude/skills/research/SKILL.md` exists.
+Verify: `ls ~/.claude/skills/co-research/SKILL.md` exists.
 
 ---
 
@@ -37,7 +37,7 @@ Verify: `ls ~/.claude/skills/research-lit/ ~/.claude/skills/research-refine/ ~/.
 
 ---
 
-## Step 3 — Codex MCP (optional, recommended external critic for `review`)
+## Step 3 — Codex MCP (optional, recommended external critic for `co-review`)
 
 ```bash
 npm install -g @openai/codex
@@ -48,7 +48,7 @@ For model selection: run `codex setup` and set model to `gpt-5.4` when prompted.
 
 Verify: `claude mcp list` shows `codex`.
 
-`review` only requires an isolated critic context. Use Codex MCP when you want an external boundary in Claude Code. If Codex is unavailable, an isolated subagent is still valid, and additional fallbacks are `auto-review-loop-llm` (set `LLM_API_BASE` and `LLM_API_KEY` env vars) or `auto-review-loop-minimax` (set `MINIMAX_API_KEY`).
+`co-review` only requires an isolated critic context. Use Codex MCP when you want an external boundary in Claude Code. If Codex is unavailable, an isolated subagent is still valid, and additional fallbacks are `auto-review-loop-llm` (set `LLM_API_BASE` and `LLM_API_KEY` env vars) or `auto-review-loop-minimax` (set `MINIMAX_API_KEY`).
 
 ---
 
@@ -71,7 +71,7 @@ feynman alpha login
 
 ## Step 5 — LaTeX (optional, required for PDF output)
 
-Skip if `write` skill will only produce `paper.md`, not compiled PDF.
+Skip if `co-write` skill will only produce `paper.md`, not compiled PDF.
 
 ```bash
 # macOS
@@ -97,8 +97,8 @@ This pack supports a curated registry and project-local customization model:
 Recommended flow:
 
 1. start with the built-in core
-2. use `customize` to choose a preset or custom stack
-3. let `evolve` refresh the shared registry when you want to assess new packs
+2. use `co-customize` to choose a preset or custom stack
+3. let `co-evolve` refresh the shared registry when you want to assess new packs
 
 Use `.co-researcher/skills.yaml` to record:
 
@@ -112,7 +112,7 @@ See [`docs/skillpack-customization.md`](skillpack-customization.md) for the full
 
 ## Step 7 — Start a project
 
-In your research project directory, invoke the `research` skill. If `RESEARCH.md` is missing, the skill will auto-download the template and `CLAUDE.md` from GitHub and prompt you to fill in `## Goal`.
+In your research project directory, invoke the `co-research` skill. If `RESEARCH.md` is missing, the skill will auto-download the template and `CLAUDE.md` from GitHub and prompt you to fill in `## Goal`.
 
 Manual fallback (if offline):
 ```bash
@@ -120,7 +120,7 @@ cp ~/.claude/co-researcher/templates/RESEARCH.md.template ./RESEARCH.md
 cp ~/.claude/co-researcher/CLAUDE.md ./CLAUDE.md
 ```
 
-Then invoke the `research` skill to begin.
+Then invoke the `co-research` skill to begin.
 
 ---
 
@@ -128,7 +128,7 @@ Then invoke the `research` skill to begin.
 
 | Component | Check |
 |-----------|-------|
-| Core skills | `ls ~/.claude/skills/research/SKILL.md` |
+| Core skills | `ls ~/.claude/skills/co-research/SKILL.md` |
 | ARIS skills | `ls ~/.claude/skills/research-lit/ ~/.claude/skills/research-refine/ ~/.claude/skills/experiment-plan/ ~/.claude/skills/result-to-claim/` |
 | Codex MCP | `claude mcp list \| grep codex` |
 | Feynman (optional) | `ls ~/.claude/skills/alpha-research/` |

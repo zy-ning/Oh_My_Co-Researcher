@@ -11,10 +11,10 @@
 ![illus](assets/illus.png)
 
 > - **自主但可控。** 自定义监督策略：何时询问、通知或直接执行。检查点、资源规则、想法变化规则——均可配置。
-> - **会推断的 agent。** `research` 发现缺口、调整 todo 列表，确认后再行动——不是固定流水线。
+> - **会推断的 agent。** `co-research` 发现缺口、调整 todo 列表，确认后再行动——不是固定流水线。
 > - **对抗性评审。** Critic 在隔离上下文中运行，返回 FATAL/MAJOR/MINOR 问题 + PROCEED/REFINE/PIVOT 结论。
 > - **BFS 模式。** 可选的自主设计空间搜索，风格参考 *autoresearch*。
-> - **自我进化。** `evolve` 从会话经验中提出技能补丁，或引入外部技能包并做兼容性检查。由你决定是否合并。
+> - **自我进化。** `co-evolve` 从会话经验中提出技能补丁，或引入外部技能包并做兼容性检查。由你决定是否合并。
 > - **兼容且可组合。** 适配任何 LLM agent 框架。从任意来源引入外部技能。定制你的技能栈。
 
 ---
@@ -27,7 +27,7 @@
 Install and configure "Oh_My_Co-Researcher" skill pack following the instructions in https://raw.githubusercontent.com/zy-ning/Oh_My_Co-Researcher/refs/heads/main/README.md and https://raw.githubusercontent.com/zy-ning/Oh_My_Co-Researcher/refs/heads/main/docs/agent-setup.md.
 ```
 
-然后在你的项目目录中运行 `/research`。如果 `RESEARCH.md` 不存在，技能会自动引导你填写目标。
+然后在你的项目目录中运行 `/co-research`。如果 `RESEARCH.md` 不存在，技能会自动引导你填写目标。
 
 > **离线或手动安装**，请参见文末的[安装说明](#安装)。
 
@@ -37,19 +37,19 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 
 | 技能 | 用途 |
 |------|------|
-| `research` | 主 agent。读取 `RESEARCH.md`，推断缺口，调整 TODO，委派给合适的技能。遵循你的监督策略。 |
-| `experiment` | 运行 ML 实验：隔离虚拟环境、时间预算、异常处理。支持 BFS 模式。 |
-| `review` | 对抗性评审，分 FATAL/MAJOR/MINOR 三级。依次回退：Codex → llm → minimax。 |
-| `write` | 以 `RESEARCH.md` 结果为基础撰写论文。内联标注 `[UNGROUNDED]` 和 `[UNVERIFIED]`。 |
-| `customize` | 项目入门与个性化。基于精选注册表推荐预设/技能包，写入 `.co-researcher/skills.yaml`。 |
-| `supervision` | 通过先选预设再微调的方式，配置 `RESEARCH.md` 中的 `## Supervision Policy`。 |
-| `evolve` | 会话结束时提取经验**并**个性化技能包。提出差异补丁——仅由人类合并。 |
+| `co-research` | 主 agent。读取 `RESEARCH.md`，推断缺口，调整 TODO，委派给合适的技能。遵循你的监督策略。 |
+| `co-experiment` | 运行 ML 实验：隔离虚拟环境、时间预算、异常处理。支持 BFS 模式。 |
+| `co-review` | 对抗性评审，分 FATAL/MAJOR/MINOR 三级。依次回退：Codex → llm → minimax。 |
+| `co-write` | 以 `RESEARCH.md` 结果为基础撰写论文。内联标注 `[UNGROUNDED]` 和 `[UNVERIFIED]`。 |
+| `co-customize` | 项目入门与个性化。基于精选注册表推荐预设/技能包，写入 `.co-researcher/skills.yaml`。 |
+| `co-supervision` | 通过先选预设再微调的方式，配置 `RESEARCH.md` 中的 `## Supervision Policy`。 |
+| `co-evolve` | 会话结束时提取经验**并**个性化技能包。提出差异补丁——仅由人类合并。 |
 
 ---
 
 ## Agent 循环原理
 
-`research` 读取项目状态，自主决定下一步：
+`co-research` 读取项目状态，自主决定下一步：
 
 1. **评估** — 对比 Goal 与 Context，找出缺口（如"实验完成但无论文 TODO"）
 2. **提案** — 调整 TODO 列表并等待确认后再行动
@@ -64,7 +64,7 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 
 本仓库采用 **精简核心 + 精选注册表** 模型。agent 帮你管理技能栈——你只需选择一个配置画像。
 
-运行 `/customize` 进行项目入门或更改技能配置：
+运行 `/co-customize` 进行项目入门或更改技能配置：
 
 1. 选择工作流画像：`core-only`、`literature-heavy`、`experiment-heavy`、`academic-rigor`、`balanced` 或自定义
 2. 选择依赖容忍度
@@ -78,7 +78,7 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 
 ### 更多技能包
 
-可通过 `evolve`（personalize 模式）按需从以下项目引入技能：
+可通过 `co-evolve`（personalize 模式）按需从以下项目引入技能：
 
 | 技能包 | 可提供内容 |
 |--------|------------|
@@ -97,7 +97,7 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 
 ![supervision](assets/choices.png)
 
-使用 `/supervision` 配置当前项目中 agent 的自动化程度。
+使用 `/co-supervision` 配置当前项目中 agent 的自动化程度。
 
 交互流程遵循"先预设，后覆盖"：
 
@@ -129,7 +129,7 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 - **指标** — 可验证的标量目标（如最小化 `val_bpb`）
 - **预算** — 每次运行时间（默认 5 分钟）与最大实验次数
 
-随后 `experiment` 自主运行：设计假设 → 提交 → 运行 → 提取指标 → 保留或 `git reset` → 重复。每次运行记录至 `results.tsv`，汇总表格完成后写入 `RESEARCH.md` Context。
+随后 `co-experiment` 自主运行：设计假设 → 提交 → 运行 → 提取指标 → 保留或 `git reset` → 重复。每次运行记录至 `results.tsv`，汇总表格完成后写入 `RESEARCH.md` Context。
 
 默认关闭——仅在明确要求时激活。即使在 `wild` 模式下，BFS 仍遵守显式资源规则、安全边界与完成条件。
 
@@ -137,7 +137,7 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 
 ## 进化技能包
 
-`evolve` 提供三种模式：
+`co-evolve` 提供三种模式：
 
 **会话模式** — 在会话结束时运行。从 `RESEARCH.md` History 和 git log 中提取可复用经验，提出对相关 `SKILL.md` 文件的修改建议。
 
@@ -146,9 +146,9 @@ Install and configure "Oh_My_Co-Researcher" skill pack following the instruction
 **注册表模式** — 刷新 `skillpacks/skill_dictionary.yaml` 与预设建议。
 
 ```bash
-/evolve                                     # 会话模式
-/evolve -- personalize feynman audit skill  # 集成单个外部技能
-/evolve -- personalize ~/.claude/skills/    # 审计整个已安装技能包
+/co-evolve                                     # 会话模式
+/co-evolve -- personalize feynman audit skill  # 集成单个外部技能
+/co-evolve -- personalize ~/.claude/skills/    # 审计整个已安装技能包
 ```
 
 补丁输出至 `lessons/`，满意后应用：
@@ -161,13 +161,13 @@ git apply lessons/YYYYMMDD-personalize-slug.diff
 
 ### 进化循环
 
-**研究循环**：`research` 选取 TODO → 委派 → 更新 `RESEARCH.md` → 提出下一步 → 循环。
+**研究循环**：`co-research` 选取 TODO → 委派 → 更新 `RESEARCH.md` → 提出下一步 → 循环。
 
-**技能进化循环**：`evolve`（会话） → `lessons/` → 人工审查 → `git apply` → 下次会话技能更强。
+**技能进化循环**：`co-evolve`（会话） → `lessons/` → 人工审查 → `git apply` → 下次会话技能更强。
 
-**个性化循环**：发现有用的外部技能 → `evolve`（个性化） → 精选补丁 → 合并 → 技能包持续成长。
+**个性化循环**：发现有用的外部技能 → `co-evolve`（个性化） → 精选补丁 → 合并 → 技能包持续成长。
 
-**注册表循环**：评估新技能包 → `evolve`（注册表） → 更新 `skillpacks/skill_dictionary.yaml` → 下次 `customize` 给出更合适的推荐。
+**注册表循环**：评估新技能包 → `co-evolve`（注册表） → 更新 `skillpacks/skill_dictionary.yaml` → 下次 `co-customize` 给出更合适的推荐。
 
 ---
 
@@ -214,9 +214,9 @@ rm -rf /tmp/aris
 - `experiment-plan` — 实验蓝图
 - `result-to-claim` — 验证结果真正支持的结论
 
-默认不建议加载：`run-experiment`、`paper-write`、`auto-review-loop`。本仓库已内置 `experiment`、`write`、`review`。
+默认不建议加载：`run-experiment`、`paper-write`、`auto-review-loop`。本仓库已内置 `co-experiment`、`co-write`、`co-review`。
 
-### Codex MCP（可选，推荐作为 `review` 的外部隔离审稿者）
+### Codex MCP（可选，推荐作为 `co-review` 的外部隔离审稿者）
 
 ```bash
 npm install -g @openai/codex
@@ -224,7 +224,7 @@ codex setup                               # 提示时选择 gpt-5.4 模型
 claude mcp add codex -s user -- codex mcp-server
 ```
 
-`review` 的核心要求是隔离上下文。本地隔离子 agent 也可以；额外备选：`auto-review-loop-llm`（设置 `LLM_API_BASE` + `LLM_API_KEY`）或 `auto-review-loop-minimax`（设置 `MINIMAX_API_KEY`）。
+`co-review` 的核心要求是隔离上下文。本地隔离子 agent 也可以；额外备选：`auto-review-loop-llm`（设置 `LLM_API_BASE` + `LLM_API_KEY`）或 `auto-review-loop-minimax`（设置 `MINIMAX_API_KEY`）。
 
 ### Feynman 技能包（可选）
 

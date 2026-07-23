@@ -11,10 +11,10 @@ A co-researcher, **fully yours**:
 ![illus](assets/illus.png)
 
 > - **Autonomous but controllable.** Customize the supervision policy: when to ask, notify, or just do. Checkpoints, resource rules, idea-change rules — all configurable.
-> - **Inferring agent.** `research` spots gaps, adjusts the todo list, and asks before acting — not a fixed pipeline.
+> - **Inferring agent.** `co-research` spots gaps, adjusts the todo list, and asks before acting — not a fixed pipeline.
 > - **Adversarial review.** Critic runs in an isolated context. Returns FATAL/MAJOR/MINOR issues + PROCEED/REFINE/PIVOT.
 > - **BFS mode.** Opt-in autonomous design space search in *autoresearch* style.
-> - **Self-improving.** `evolve` proposes skill diffs from session lessons, or ingests external packs with compatibility checks. You merge.
+> - **Self-improving.** `co-evolve` proposes skill diffs from session lessons, or ingests external packs with compatibility checks. You merge.
 > - **Compatible & Composable.** Use with any LLM agent framework. Pull in external skills from anywhere. Customize your stack.
 
 ---
@@ -27,7 +27,7 @@ Paste this into your agent (Claude Code, Open Code, Codex, etc.) — it fetches 
 Install and configure "Oh_My_Co-Researcher" skill pack following the instructions in https://raw.githubusercontent.com/zy-ning/Oh_My_Co-Researcher/refs/heads/main/README.md and https://raw.githubusercontent.com/zy-ning/Oh_My_Co-Researcher/refs/heads/main/docs/agent-setup.md.
 ```
 
-Then run `/research` in your project directory. If `RESEARCH.md` is missing, the skill bootstraps it and prompts you for your goal.
+Then run `/co-research` in your project directory. If `RESEARCH.md` is missing, the skill bootstraps it and prompts you for your goal.
 
 > **For manual / offline setup**, see [Installation](#installation) at the bottom.
 
@@ -37,19 +37,19 @@ Then run `/research` in your project directory. If `RESEARCH.md` is missing, the
 
 | Skill | What it does |
 |-------|-------------|
-| `research` | Main agent. Reads `RESEARCH.md`, infers gaps, adjusts TODOs, delegates to the right skill. Follows your supervision policy. |
-| `experiment` | Runs ML experiments: isolated venv, time-budgeted, failure-handled. Supports BFS mode. |
-| `review` | Adversarial critique with FATAL/MAJOR/MINOR severity. Falls back through Codex → llm → minimax. |
-| `write` | Paper drafting grounded in `RESEARCH.md` results. Marks `[UNGROUNDED]` and `[UNVERIFIED]` inline. |
-| `customize` | Project onboarding. Recommends presets/skillpacks from the curated registry, writes `.co-researcher/skills.yaml`. |
-| `supervision` | Configures `## Supervision Policy` in `RESEARCH.md` through a preset-first flow. |
-| `evolve` | Session-end lesson extraction **and** skill pack personalization. Proposes diffs — human merges only. |
+| `co-research` | Main agent. Reads `RESEARCH.md`, infers gaps, adjusts TODOs, delegates to the right skill. Follows your supervision policy. |
+| `co-experiment` | Runs ML experiments: isolated venv, time-budgeted, failure-handled. Supports BFS mode. |
+| `co-review` | Adversarial critique with FATAL/MAJOR/MINOR severity. Falls back through Codex → llm → minimax. |
+| `co-write` | Paper drafting grounded in `RESEARCH.md` results. Marks `[UNGROUNDED]` and `[UNVERIFIED]` inline. |
+| `co-customize` | Project onboarding. Recommends presets/skillpacks from the curated registry, writes `.co-researcher/skills.yaml`. |
+| `co-supervision` | Configures `## Supervision Policy` in `RESEARCH.md` through a preset-first flow. |
+| `co-evolve` | Session-end lesson extraction **and** skill pack personalization. Proposes diffs — human merges only. |
 
 ---
 
 ## How the Agent Loop Works
 
-`research` reads your project state and figures out what to do next:
+`co-research` reads your project state and figures out what to do next:
 
 1. **Assess** — compares Goal vs Context to find gaps ("experiments done but no paper TODO")
 2. **Propose** — adjusts the TODO list and waits for confirmation before acting
@@ -64,7 +64,7 @@ On any new session or context compaction, the agent reads `## Pipeline Status` i
 
 This repo follows a **lean core + curated registry** model. The agent manages your stack — you just pick a profile.
 
-Run `/customize` to onboard a project or change your skill configuration:
+Run `/co-customize` to onboard a project or change your skill configuration:
 
 1. Choose a workflow profile: `core-only`, `literature-heavy`, `experiment-heavy`, `academic-rigor`, `balanced`, or custom
 2. Choose dependency tolerance
@@ -78,7 +78,7 @@ See [`docs/skillpack-customization.md`](docs/skillpack-customization.md) for the
 
 ### More Skill Packs
 
-Use `evolve` (personalize mode) to selectively pull skills from any of these:
+Use `co-evolve` (personalize mode) to selectively pull skills from any of these:
 
 | Pack | What it adds |
 |------|-------------|
@@ -97,7 +97,7 @@ Use `evolve` (personalize mode) to selectively pull skills from any of these:
 
 ![supervision](assets/choices.png)
 
-Use `/supervision` to configure how much autonomy the agent should use for the current project.
+Use `/co-supervision` to configure how much autonomy the agent should use for the current project.
 
 The flow is preset-first, override-second:
 
@@ -129,7 +129,7 @@ Inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch). A
 - **Metric** — a verifiable scalar to optimize (e.g., minimize `val_bpb`)
 - **Budget** — time per run (default 5 min) and max experiments
 
-Then `experiment` runs autonomously: design hypothesis → commit → run → extract metric → keep or `git reset` → repeat. Every run logged to `results.tsv`. Summary table lands in `RESEARCH.md` Context when done.
+Then `co-experiment` runs autonomously: design hypothesis → commit → run → extract metric → keep or `git reset` → repeat. Every run logged to `results.tsv`. Summary table lands in `RESEARCH.md` Context when done.
 
 Off by default — only activates when you explicitly ask. Even under `wild`, BFS still respects explicit resource rules, safety boundaries, and completion criteria.
 
@@ -137,7 +137,7 @@ Off by default — only activates when you explicitly ask. Even under `wild`, BF
 
 ## Evolving the Skill Pack
 
-`evolve` has three modes:
+`co-evolve` has three modes:
 
 **Session mode** — run at session end. Extracts generalizable lessons from `RESEARCH.md` History and git log, proposes diffs to affected `SKILL.md` files.
 
@@ -146,9 +146,9 @@ Off by default — only activates when you explicitly ask. Even under `wild`, BF
 **Registry mode** — refresh `skillpacks/skill_dictionary.yaml` and preset recommendations.
 
 ```bash
-/evolve                                     # session mode
-/evolve -- personalize feynman audit skill  # integrate one external skill
-/evolve -- personalize ~/.claude/skills/    # audit your entire installed pack
+/co-evolve                                     # session mode
+/co-evolve -- personalize feynman audit skill  # integrate one external skill
+/co-evolve -- personalize ~/.claude/skills/    # audit your entire installed pack
 ```
 
 Diffs land in `lessons/`. Apply when satisfied:
@@ -161,13 +161,13 @@ Skills are never auto-modified. Human merges only.
 
 ### Evolution Loops
 
-**Research loop**: `research` picks TODO → delegates → updates `RESEARCH.md` → proposes next step → repeats.
+**Research loop**: `co-research` picks TODO → delegates → updates `RESEARCH.md` → proposes next step → repeats.
 
-**Skill evolution loop**: `evolve` (session) → `lessons/` → human review → `git apply` → better skills next session.
+**Skill evolution loop**: `co-evolve` (session) → `lessons/` → human review → `git apply` → better skills next session.
 
-**Personalization loop**: find a useful skill elsewhere → `evolve` (personalize) → curated diff → merge → your pack grows.
+**Personalization loop**: find a useful skill elsewhere → `co-evolve` (personalize) → curated diff → merge → your pack grows.
 
-**Registry loop**: assess a new pack → `evolve` (registry) → update `skillpacks/skill_dictionary.yaml` → `customize` recommends better stacks next time.
+**Registry loop**: assess a new pack → `co-evolve` (registry) → update `skillpacks/skill_dictionary.yaml` → `co-customize` recommends better stacks next time.
 
 ---
 
@@ -213,9 +213,9 @@ These are the ARIS skills this pack benefits from most:
 - `experiment-plan` — experiment blueprints
 - `result-to-claim` — checks which conclusions the results actually support
 
-Skip by default: `run-experiment`, `paper-write`, and `auto-review-loop`. This pack already ships `experiment`, `write`, and `review`.
+Skip by default: `run-experiment`, `paper-write`, and `auto-review-loop`. This pack already ships `co-experiment`, `co-write`, and `co-review`.
 
-### Codex MCP (optional, recommended external critic for `review`)
+### Codex MCP (optional, recommended external critic for `co-review`)
 
 ```bash
 npm install -g @openai/codex
@@ -223,7 +223,7 @@ codex setup                          # set model to gpt-5.4 when prompted
 claude mcp add codex -s user -- codex mcp-server
 ```
 
-`review` prefers any isolated critic context. Use Codex MCP when you want an external boundary in Claude Code. Additional fallbacks: `auto-review-loop-llm` (set `LLM_API_BASE` + `LLM_API_KEY`) or `auto-review-loop-minimax` (set `MINIMAX_API_KEY`).
+`co-review` prefers any isolated critic context. Use Codex MCP when you want an external boundary in Claude Code. Additional fallbacks: `auto-review-loop-llm` (set `LLM_API_BASE` + `LLM_API_KEY`) or `auto-review-loop-minimax` (set `MINIMAX_API_KEY`).
 
 ### Feynman skill pack (optional)
 

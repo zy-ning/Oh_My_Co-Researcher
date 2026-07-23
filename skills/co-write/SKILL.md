@@ -1,15 +1,15 @@
 ---
-name: write
+name: co-write
 description: >-
   Drafts or revises a publication-ready research paper from RESEARCH.md,
   producing paper.md and refs.bib. Builds a clear claim-evidence narrative,
   writes in professional academic style, marks ungrounded claims [UNGROUNDED]
-  and unverified citations [UNVERIFIED] inline, then auto-invokes review.
+  and unverified citations [UNVERIFIED] inline, then auto-invokes co-review.
   Trigger phrases: "write paper", "draft paper", "revise paper", "start
   writing".
 ---
 
-# Write
+# Co-Write
 
 Draft the paper from `RESEARCH.md`. You can start writing at any point in the research lifecycle; use `[UNGROUNDED]` to track claims that still need evidence.
 
@@ -68,7 +68,7 @@ Draft the paper from `RESEARCH.md`. You can start writing at any point in the re
 
 ## Post-Draft
 
-12. Auto-invoke `review`. Write the score to `RESEARCH.md` **Context**. Apply stop policy (`target_reached`). In wild mode, continue if configured; otherwise ask: "Review score is X/10. Want a revision pass?"
+12. Auto-invoke `co-review`. Write the score to `RESEARCH.md` **Context**. Apply stop policy (`target_reached`). In wild mode, continue if configured; otherwise ask: "Review score is X/10. Want a revision pass?"
 
 ## Partial State
 
@@ -78,9 +78,9 @@ Draft the paper from `RESEARCH.md`. You can start writing at any point in the re
 
 - Never fabricate results, citations, baselines, or venue claims.
 - Never hide `[UNGROUNDED]` or `[UNVERIFIED]` markers.
-- Do not turn `write` into compilation, figure generation, or experiment execution; delegate those to the relevant skill.
+- Do not turn `co-write` into compilation, figure generation, or experiment execution; delegate those to the relevant skill.
 
 ## Example
 
 Input: RESEARCH.md with 2 completed experiments; user says "write the paper".
-Output: paper.md (publication-ready narrative + 5 sections, 1 [UNGROUNDED] marker), refs.bib (8 entries, 1 [UNVERIFIED]), then auto-invokes `review`.
+Output: paper.md (publication-ready narrative + 5 sections, 1 [UNGROUNDED] marker), refs.bib (8 entries, 1 [UNVERIFIED]), then auto-invokes `co-review`.

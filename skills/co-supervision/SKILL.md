@@ -1,5 +1,5 @@
 ---
-name: supervision
+name: co-supervision
 description: >-
   Configure the project's supervision policy in RESEARCH.md. Uses a preset-first
   flow (`manual`, `checkpointed`, `autonomous`, `wild`), then lets the user
@@ -8,7 +8,7 @@ description: >-
   supervision", "automation settings", "change autonomy", "/supervision".
 ---
 
-# Supervision
+# Co-Supervision
 
 Use this skill when the user wants to configure how much autonomy the agent should use for the current project.
 
@@ -16,7 +16,7 @@ Use this skill when the user wants to configure how much autonomy the agent shou
 
 This skill manages `## Supervision Policy` in `RESEARCH.md`.
 
-If the user wants to configure both supervision and preferred skillpacks together, prefer `customize` and keep this skill focused on supervision only.
+If the user wants to configure both supervision and preferred skillpacks together, prefer `co-customize` and keep this skill focused on supervision only.
 
 ## Flow
 
@@ -33,7 +33,7 @@ Use a preset-first flow:
 ## Precedence
 
 `RESEARCH.md` `## Supervision Policy` is the live working-state layer and overrides everything.
-`.co-researcher/skills.yaml` `supervision` is the project-default layer written by `customize` — only consulted when `RESEARCH.md` has no policy yet.
+`.co-researcher/skills.yaml` `supervision` is the project-default layer written by `co-customize` — only consulted when `RESEARCH.md` has no policy yet.
 
 ## Constraints
 

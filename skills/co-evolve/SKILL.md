@@ -1,5 +1,5 @@
 ---
-name: evolve
+name: co-evolve
 description: >-
   Three modes. Session mode (default): extracts generalizable lessons from
   RESEARCH.md and git history at session end; lessons that imply a new or
@@ -19,7 +19,7 @@ description: >-
   pack", "update skill_dictionary.yaml", "update index.yaml".
 ---
 
-# Evolve
+# Co-Evolve
 
 Four modes: **Session** (run at session end), **Personalize** (discover and integrate external skills), **Registry** (curate `skillpacks/skill_dictionary.yaml` and presets), **Create** (build a new skill from scratch). Skill creation and significant rewrites always go through `skill-creator` — never write to SKILL.md directly.
 

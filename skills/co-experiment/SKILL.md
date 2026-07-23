@@ -1,5 +1,5 @@
 ---
-name: experiment
+name: co-experiment
 description: >-
   Runs ML experiments reproducibly — single runs or autonomous BFS batches.
   Single mode: isolated venv, time-budgeted, failure-handled, logs to
@@ -11,7 +11,7 @@ description: >-
   best config", "autoresearch".
 ---
 
-# Experiment
+# Co-Experiment
 
 Run experiments reproducibly. Log everything to `RESEARCH.md`.
 
